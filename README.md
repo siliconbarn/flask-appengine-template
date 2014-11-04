@@ -20,7 +20,7 @@ See <http://flask.pocoo.org> for more info.
 Setup/Configuration
 -------------------
 1. Download this repository via
-   `git clone git@github.com:kamalgill/flask-appengine-template.git`
+   `git clone https://github.com/kamalgill/flask-appengine-template.git`
    or download the tarball at
    <http://github.com/kamalgill/flask-appengine-template/tarball/master>
 2. Copy the src/ folder to your application's root folder
@@ -57,7 +57,7 @@ which can be installed via:
 Front-end Customization
 -----------------------
 1. Customize the main HTML template at
-   `src/application/static/templates/base.html`
+   `src/application/templates/base.html`
 2. Customize CSS styles at `src/application/static/css/main.css`
 3. Add custom JavaScript code at `src/application/static/js/main.js`
 4. Customize favicon at `src/application/static/img/favicon.ico`
@@ -87,6 +87,36 @@ Flask-Cache
 The handy Flask-Cache extension is included, pre-configured for App Engine's Memcache API.
 Use the "Flush Cache" button at http://localhost:8000/memcache to clear the cache.
 
+
+Testing
+-------
+Place all your tests in src/tests directory. Test runner is placed in src directory. To run your tests simply go to src directory and do:
+
+<pre class="console">
+  python apptest.py path/to/your/googleappengine/installation
+</pre>
+
+Path to your local google app engine installation must be provided as first argument to the script. If the path is long and you don't like to type it each time you run the tests you can also hardcode it in apptest.py, just edit the variable SDK_PATH and set it to your google app engine folder. 
+
+Before running tests set evironment variable FLASK_CONF to the value TEST. 
+
+In Linux this is done by:
+
+<pre class="console">
+  export FLASK_CONF=TEST
+</pre>
+
+In Powershell:
+
+<pre class="console">
+  [Environment]::SetEnvironmentVariable("FLASK_CONF", "TEST", "User");
+</pre>
+
+Remember to restart Powershell. Change of environment variable will take place after restarting Powershell. 
+
+You can specify your testing configuration (e.g. separate database for tests results) in src/application/settings.py.
+
+To switch back to development configuration just set FLASK_CONF to DEV.
 
 Deploying the Application
 -------------------------
